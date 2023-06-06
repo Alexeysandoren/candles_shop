@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{%load static%}
+{% block title %} Войти {% endblock %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <div class="login_title">
+    <div class="login">
+        <br>{{form.username.label}}
+        <br>{{form.username}}
+        {% if form.username.errors %}
+          <br>{{ form.username.errors }}
+        {% endif %}
+        <br>{{form.password.label}}
+        <br>{{form.password}}
+        {% if form.password.errors %}
+        <br>{{ form.password.errors }}
+      {% endif %}
+    <br><p> <button type="submit" class="button">
+      Войти
+    </button> </p>
+    <p class="reset_pass"><a href="{% url "users:password_reset" %}"> Забыли пароль?</a> </p>
+    </div>
+  </div>
+</form>
+{% endblock %}
